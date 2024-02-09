@@ -1,25 +1,36 @@
 #include <vector>
 #include <iostream>
+#include <set>
+
 using namespace std;
 
 class Solution {
 public:
     vector<int> countSmaller(vector<int>& nums) {
-        int len = nums.size();
-        vector<int> res(len, 0), smaller_pos(len, len);
-        for (int i = len - 2; i>=0; i--) {
-            int wait_check = i + 1;
-            while (wait_check < len && nums[i] < nums[wait_check]) {
-                wait_check = smaller_pos[wait_check];
-            }
-            smaller_pos[i] = wait_check;
-            if (wait_check < len) {
-                if (nums[i] > nums[wait_check]) {
-                    res[i] = res[wait_check] + 1;
+        vector<int> res(nums.size());
+        vector<int> smallerClosest(nums.size());
+        res[nums.size() - 1] = 0;
+        smallerClosest[nums.size() - 1] = 0;
+        for (int i = nums.size() - 2; i >=0; i--) {
+            int p = i + 1;
+            while (p != 0) {
+                if (nums[i] >= nums[p]) {
+                    
+                    if (nums[i] == nums[p]) {
+                        res[i] = res[p];
+                        smallerClosest[i] = smallerClosest[p];
+                    } else {
+                        res[i] = res[p] + 1;
+                        smallerClosest[i] = p;
+                    }
+                    break;
                 } else {
-                    res[i] = res[wait_check];
+                    p = smallerClosest[p];
                 }
-               
+            }
+            if (p == 0) {
+                res[i] = 0;
+                smallerClosest[i] = 0;
             }
         }
         return res;
@@ -28,7 +39,7 @@ public:
 
 int main() {
     Solution s;
-    vector<int> a{5,2,6,1};
+    vector<int> a{2, 0, 1};
     for (int &c : s.countSmaller(a)) {
         cout << c << " ";
     }
