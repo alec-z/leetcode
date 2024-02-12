@@ -8,14 +8,17 @@ class MedianFinder {
     multiset<int>::iterator p1;
     multiset<int>::iterator p2;
     int nums_size = 0;
-    bool before(multiset<int>::iterator p, const multiset<int>::iterator & t) {
-        while (*p == *t) {
+    bool before(multiset<int>::iterator p, multiset<int>::iterator t) {
+        while (*p <= *t) {
             if (p == t) {
                 return true;
             }
             p++;
         }
         return false;
+    }
+    bool between(multiset<int>::iterator p1, multiset<int>::iterator p2, multiset<int>::iterator t) {
+        return before(p1, t) && before(t, p2);
     }
 public:
     MedianFinder() {
@@ -42,31 +45,14 @@ public:
                 }
             }
         } else {
-            if (num < *p1) {
+            if (num < *p1 || (num == *p1 && before(t, p1))) {
                 p2 --;
-            } else if (num == *p1) {
-                if (!before(p1, t)) {
-                    p2 --;
-                } else if (num > *p2 || (num == *p2 && before(p2, t))) {
-                    p1 ++;
-                } else {
-                    p1 = t;
-                    p2 = t;
-                }
-            } else if (num > *p1 && num < *p2) {
+            } else if (num >= *p1 && num <= *p2 && between(p1, p2, t)) {
                 p1 = t;
                 p2 = t;
-            } else if (num == *p2) {
-                if (before(p2, t)) {
-                    p1 ++;
-                } else {
-                    p1 = t;
-                    p2 = t;
-                }
-            } else if (num > *p2) {
+            } else if (num > *p2 || (num == *p2 && before(p2, t))) {
                 p1 ++;
             }
-            
         }
         nums_size++;
     }
