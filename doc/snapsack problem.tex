@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath}
+\usepackage{setspace}
+\usepackage{amsfonts}
+\usepackage{listings}
+\usepackage{minted}
+\usepackage{xcolor}
+
+
+\onehalfspacing
+\title{Snapsack Problem}
+\author{Alec Zheng}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+%---content
+
+\section{Brief Introduction}
+You have Snapsack which has a \textit{Capacity}: $C_s$. There are some goods, each one has a \textit{Capacity i}:  $C_i$, and has a \textit{Value i}:  $V_i$. 
+You choose goods combination which fit the snapsack by Capacity, and maximize the total value.
+fit  
+In accordance to different constrains, there are 4 categories of Snapsack problem.
+\begin{itemize}
+    \item \textbf{Fractional Snapsack}: the goods can be split to small part. 
+    \item \textbf{0-1 Snapsack}: each item must be taken entirely or left out.
+    \item \textbf{Unbounded Snapsack} (Complete Snapsack): each item can be taken as many quantity as you like. 
+    \item \textbf{bounded Snapsack}: similar to Unbounded Snapsack, each item has a \textit{maximum quantity} $k_i$ can be taken.
+    \item \textbf{others variances}: the Capacity may be Multi-dimensional.
+\end{itemize}
+
+\section{Solution}
+\subsection{Fractional Snapsack}
+\textbf{Greedy algorithm}: take the items by \textbf{value per Capacity}.
+\subsection{0-1 Snapsack}
+All the other Snapsack should be solved by \textbf{DP}. 
+
+Let $ dp[i][j] $ denote the maximum value achievable using the first $i$ items with a knapsack capacity $j$.
+
+State Transition Equation:
+\[
+dp[i][j] = max(dp[i-1]][j],\ dp[i - 1][j - C_i] + V_i)
+\]
+
+Complexity:
+
+
+Time Complexity: $\mathit{O}(nC)$
+
+Space Complexity: $\mathit{O}(C) $ when using the optimized 1D approach
+\begin{minted}{python}
+for i from 1 to n:
+    for j from W down to w_i:
+        dp[j] = max(dp[j], dp[j - w_i] + v_i)
+
+\end{minted}
+
+
+\end{document}
+

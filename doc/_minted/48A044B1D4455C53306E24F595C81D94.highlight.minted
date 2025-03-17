@@ -1,0 +1,6 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{for} \PYG{n}{i} \PYG{k+kn}{from}\PYG{+w}{ }\PYG{l+m+mi}{1} \PYG{n}{to} \PYG{n}{n}\PYG{p}{:}
+    \PYG{k}{for} \PYG{n}{j} \PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{W} \PYG{n}{down} \PYG{n}{to} \PYG{n}{w\PYGZus{}i}\PYG{p}{:}
+        \PYG{n}{dp}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{n+nb}{max}\PYG{p}{(}\PYG{n}{dp}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{p}{,} \PYG{n}{dp}\PYG{p}{[}\PYG{n}{j} \PYG{o}{\PYGZhy{}} \PYG{n}{w\PYGZus{}i}\PYG{p}{]} \PYG{o}{+} \PYG{n}{v\PYGZus{}i}\PYG{p}{)}
+
+\end{MintedVerbatim}

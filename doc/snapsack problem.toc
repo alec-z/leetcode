@@ -1,0 +1,4 @@
+\contentsline {section}{\numberline {1}Brief Introduction}{1}{}%
+\contentsline {section}{\numberline {2}Solution}{2}{}%
+\contentsline {subsection}{\numberline {2.1}Fractional Snapsack}{2}{}%
+\contentsline {subsection}{\numberline {2.2}0-1 Snapsack}{2}{}%
